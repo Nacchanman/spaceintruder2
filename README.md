@@ -1042,21 +1042,6 @@
     }
     state.enemyBullets = state.enemyBullets.filter(b => b.y < viewH()+40 && b.x > -70 && b.x < viewW()+70);
 
-    // bullet cancel: player bullets vs enemy bullets
-    // 軽量化のためグリッド分割して近い弾だけ判定する
-    if (state.playerBullets.length && state.enemyBullets.length){
-      const cellSize = 28;
-      const grid = new Map();
-
-      for (let i=0; i<state.enemyBullets.length; i++){
-        const e = state.enemyBullets[i];
-        const cx = Math.floor(e.x / cellSize);
-        const cy = Math.floor(e.y / cellSize);
-        const key = cx + "," + cy;
-        if (!grid.has(key)) grid.set(key, []);
-        grid.get(key).push(i);
-      }
-
       const enemyRemoved = new Set();
       const keptPlayerBullets = [];
 
