@@ -48,8 +48,15 @@
     box-shadow:0 16px 40px rgba(0,0,0,.28)
   }
   #controls{
-    display:grid;grid-template-columns:1fr 1fr 1.15fr .9fr .9fr;gap:8px;
-    padding:10px 10px calc(env(safe-area-inset-bottom,0px) + 12px);z-index:3
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-areas:
+      "left right"
+      "pause fire"
+      "pause fire";
+    gap:8px;
+    padding:10px 10px calc(env(safe-area-inset-bottom,0px) + 12px);
+    z-index:3
   }
   button.ctrl, #panel button, .shop-btn, .menu-btn{
     appearance:none;border:1px solid rgba(255,255,255,.12);border-bottom-width:3px;color:var(--text);
@@ -96,8 +103,9 @@
   .hud-box{padding:7px 4px;border-radius:10px}
   #gameWrap{padding:0 6px}
   #controls{gap:6px;padding:8px 8px calc(env(safe-area-inset-bottom,0px) + 10px)}
-  button.ctrl{min-height:56px;font-size:16px}
-  #skillBtn,#pauseBtn{font-size:13px}
+  button.ctrl{min-height:54px;font-size:16px}
+  #fireBtn{min-height:114px;font-size:20px}
+  #pauseBtn{font-size:13px}
 }
 
 </style>
@@ -844,7 +852,7 @@
       </div>
       <button id="startGameBtn">ゲーム開始</button>
       <button id="installBtn" class="menu-btn alt" style="display:${'${state.canInstall ? "inline-flex" : "none"}'};margin-left:8px;">ホームに追加</button>
-      <p class="small">操作: 左右ボタン or 画面ドラッグ / Fire長押し連射 / Skill / Pause</p>
+      <p class="small">操作: 左右ボタン or 画面ドラッグ / 右下Fire長押し連射 / Pause</p>
     `;
     ui.panel.querySelectorAll("[data-diff]").forEach(btn => {
       btn.onclick = () => {
